@@ -1,0 +1,11 @@
+--2026-04-23 22:59:24--  https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+Resolving apt.repos.intel.com (apt.repos.intel.com)... 23.33.39.113, 2600:140e:6:9bf::a87, 2600:140e:6:9ab::a87
+Connecting to apt.repos.intel.com (apt.repos.intel.com)|23.33.39.113|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4738 (4.6K) [application/vnd.exstream-package]
+Saving to: ‘GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB.3’
+
+     0K ....                                                  100% 3.64G=0s
+
+2026-04-23 22:59:55 (3.64 GB/s) - ‘GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB.3’ saved [4738/4738]
+
