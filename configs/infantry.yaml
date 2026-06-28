@@ -37,3 +37,59 @@ distort_coeffs: [-0.053032056252978271, 0.12304744809762919, -0.0008330652510950
 # 相机同理想情况的偏角: yaw0.56 pitch1.05 roll0.41 degree
 R_camera2gimbal: [0.0, 0.0, 1.0, -1.0, 0.0, 0.0, 0.0, -1.0, 0.0]
 t_camera2gimbal: [0.16, 0.047, 0.0]
+
+#####-----弹丸参数-----#####
+projectile_speed: 15.0  # 弹丸速度 [m/s] (RoboMaster 17mm 弹丸)
+
+#####-----小陀螺卡尔曼滤波参数-----#####
+spin_kalman:
+  # 过程噪声 (连续时间谱密度)
+  q_pos: 5e-5      # 位置过程噪声 [m²/s]
+  q_vel: 2.0       # 速度过程噪声 [(m/s)²/s] — 加速扰动
+  q_theta: 1e-3    # 角度过程噪声 [rad²/s]
+  q_omega: 80.0    # 角速度过程噪声 [(rad/s)²/s] — 角加速扰动
+  # 测量噪声
+  r_pos: 2e-4      # 位置测量噪声方差 [m²]
+  # 初始协方差
+  init_cov_pos: 1e-2     # 位置初始方差
+  init_cov_vel: 2.0      # 速度初始方差
+  init_cov_theta: 1.0    # 角度初始方差
+  init_cov_omega: 150.0  # 角速度初始方差
+  # 异常值检测
+  mahalanobis_threshold: 4.0  # 马氏距离阈值
+  max_omega: 30.0             # 最大合理角速度 [rad/s]
+  max_dt: 0.5                 # 最大允许时间间隔 [s] (超过则重置)
+
+#####-----装甲板几何参数 (车体坐标系)-----#####
+# angle_offset: 以 x 正半轴为 0, 逆时针为正 (rad)
+# radius:       装甲板到车辆中心水平距离 (m)
+# height_offset: 装甲板相对车辆中心垂直偏移 (m)
+armor_geometry:
+  one:
+    radius: 0.22
+    angle_offset: 0.7854   #  ~45° (前方偏右)
+    height_offset: 0.01
+  two:
+    radius: 0.22
+    angle_offset: 2.3562   # ~135° (左侧)
+    height_offset: 0.01
+  three:
+    radius: 0.22
+    angle_offset: -2.3562  # ~225° (后方, -135°)
+    height_offset: -0.01
+  four:
+    radius: 0.22
+    angle_offset: -0.7854  # ~315° (右侧, -45°)
+    height_offset: -0.01
+  sentry:
+    radius: 0.0
+    angle_offset: 0.0
+    height_offset: 0.0
+  outpost:
+    radius: 0.0
+    angle_offset: 0.0
+    height_offset: 0.0
+  base:
+    radius: 0.0
+    angle_offset: 0.0
+    height_offset: 0.0

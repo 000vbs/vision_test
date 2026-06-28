@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
     for (auto & armor : armors) {
       // TODO: 使用 solver.solve(armor) 进行位姿解算得到相对距离
       solver.solve(armor);
-      auto target = aimer.aim(armor.xyz_in_gimbal, timestamp);
+      auto target = aimer.aim(armor.xyz_in_gimbal, armor.name, timestamp);
 
       // TODO: 在图像上绘制装甲板（或者利用 yolo 类自带的画图函数）并可将距离通过 cv::putText 写在图像上
       std::vector<cv::Point> poly;
@@ -47,6 +47,7 @@ int main(int argc, char** argv) {
       cv::polylines(frame, poly, true, cv::Scalar(0, 255, 0), 2);
 
       double distance = armor.xyz_in_gimbal.norm();
+
       auto info = cv::format(
         "%s %.2fm yaw=%.1f pitch=%.1f",
         ARMOR_NAMES[armor.name].c_str(), distance,
